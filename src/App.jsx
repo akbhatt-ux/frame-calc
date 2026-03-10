@@ -23,7 +23,7 @@ export default function FrameCalc() {
   const [animType, setAnimType] = useState("position");
   const [progress, setProgress] = useState(0);
   const [playing, setPlaying] = useState(true);
-  const [bezierInput, setBezierInput] = useState("0.42,0,0.58,1");
+  const [bezierInput, setBezierInput] = useState("0.3,0,0.2,1");
   const [bezierError, setBezierError] = useState(false);
   const [useCustom, setUseCustom] = useState(false);
   const rafRef = useRef(null);
