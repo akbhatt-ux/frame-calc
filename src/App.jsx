@@ -1,5 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 
+const fontLink = document.createElement("link");
+fontLink.href = "https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap";
+fontLink.rel = "stylesheet";
+document.head.appendChild(fontLink);
+
 const PRESETS = [23.976, 24, 25, 29.97, 30, 50, 59.94, 60];
 const ANIM_TYPES = ["position", "scale", "rotation"];
 
@@ -165,12 +170,12 @@ export default function FrameCalc() {
   };
 
   return (
-    <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#0a0a0b", fontFamily: "'Inter', system-ui, sans-serif", color: "#f0f0f0", padding: "2rem 0" }}>
-      <div style={{ width: 400, padding: "2rem", background: "#111113", borderRadius: 20, boxShadow: "0 20px 60px #00000080", border: "1px solid #1e1e22" }}>
+    <div style={{       height: "100vh", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center", background: "#0a0a0b", fontFamily: "'Inter', system-ui, sans-serif", color: "#f0f0f0", padding: "1rem 0" }}>
+      <div style={{       width: 400, padding: "1.25rem", background: "#111113", borderRadius: 20, boxShadow: "0 20px 60px #00000080", border: "1px solid #1e1e22", maxHeight: "calc(100vh - 2rem)", overflowY: "auto" }}>
 
-        <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: "1.75rem" }}>
-          <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#ff5c35" }} />
-          <span style={{ fontSize: ".75rem", fontWeight: 600, letterSpacing: ".1em", color: "#555", textTransform: "uppercase" }}>Frames → ms</span>
+        <div style={{ textAlign: "center", marginBottom: "1.75rem" }}>
+          <div style={{ fontFamily: "'Metal Mania', cursive", fontSize: "2.6rem", letterSpacing: ".05em", background: "linear-gradient(180deg, #fff 30%, #ff5c35 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", lineHeight: 1.1 }}>THE FRAMERATOR</div>
+          <div style={{ width: 60, height: 2, background: "linear-gradient(90deg, transparent, #ff5c35, transparent)", margin: "8px auto 0" }} />
         </div>
 
         <div style={{ marginBottom: "1.25rem" }}>
@@ -283,6 +288,24 @@ export default function FrameCalc() {
             </div>
           </div>
         </div>
+        {/* Deploy footer */}
+        <div style={{ marginTop: "1rem", background: "#0a0a0b", borderRadius: 14, border: "1px solid #1a1a1e", padding: "0.85rem 1rem" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
+            <div style={{ fontSize: ".65rem", fontWeight: 600, color: "#444", letterSpacing: ".08em", textTransform: "uppercase" }}>Deploy updates</div>
+            <button onClick={() => {
+              navigator.clipboard.writeText('git add . && git commit -m "update"\nnpm run deploy');
+            }} style={{ background: "#1a1a1e", border: "1px solid #252528", color: "#555", borderRadius: 6, padding: "2px 10px", fontSize: ".65rem", fontWeight: 600, cursor: "pointer", letterSpacing: ".05em" }}
+              onMouseEnter={e => { e.target.style.color = "#ff5c35"; e.target.style.borderColor = "#ff5c3550"; }}
+              onMouseLeave={e => { e.target.style.color = "#555"; e.target.style.borderColor = "#252528"; }}>
+              Copy
+            </button>
+          </div>
+          <div style={{ fontFamily: "monospace", fontSize: ".75rem", color: "#666", background: "#0d0d0f", borderRadius: 8, padding: "0.6rem 0.75rem", display: "flex", flexDirection: "column", gap: 4 }}>
+            <span><span style={{ color: "#ff5c3580" }}>$</span> git add . && git commit -m "update"</span>
+            <span><span style={{ color: "#ff5c3580" }}>$</span> npm run deploy</span>
+          </div>
+        </div>
+
       </div>
     </div>
   );
